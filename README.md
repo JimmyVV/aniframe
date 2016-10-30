@@ -25,7 +25,7 @@ setTimeout(function(){
 ```
 aniframe.run(dynamicDraw.bind(this,"on","left"));
 ```
- - cancel(): 取消动画执行
+ - cancel(fn): 取消动画执行，需要指定取消的动画函数名
 
 ## Author
  - [JimmyVV][1]
