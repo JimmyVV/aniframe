@@ -12,19 +12,22 @@
 }(this, function() {
     // define the library of RAF (requestAnimationFrame)
     return {
-        tmp: 0,
+        tmp: new Map(),
         requestAnimationFrame: window.requestAnimationFrame || window.mozRequestAnimationFrame ||
             window.webkitRequestAnimationFrame || window.msRequestAnimationFrame,
         cancelAnimationFrame: window.cancelAnimationFrame || window.mozCancelAnimationFrame,
         _run(fn) {
             fn();
-            this.tmp = requestAnimationFrame(this._run.bind(this, fn));
+            this.tmp.set(fn,requestAnimationFrame(this._run.bind(this, fn)));
         },
         run(fn) {
-            this.tmp = requestAnimationFrame(this._run.bind(this, fn));
+            this.tmp.set(fn,requestAnimationFrame(this._run.bind(this, fn)));
         },
-        cancel() {
-            if (this.tmp) cancelAnimationFrame(this.tmp);
+        cancel(fn) {
+            if (this.tmp.has(fn)) {
+                cancelAnimationFrame(this.tmp.get(fn));
+                this.tmp.delete(fn);
+            }
         }
     }
 }));

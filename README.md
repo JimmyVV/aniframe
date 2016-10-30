@@ -8,11 +8,14 @@ $ npm install https://github.com/JimmyVV/aniframe
 ## 使用
 ```
 let aniframe = require('aniframe');
+
+function draw(){//...}
+
 aniframe.run(function(){
     console.log(1);
 })
 setTimeout(function(){
-	aniframe.cancel();
+	aniframe.cancel(draw);
 },200);
 ```
 
@@ -26,7 +29,7 @@ aniframe.run(dynamicDraw.bind(this,"on","left"));
 
 ## Author
  - [JimmyVV][1]
-
+  
 
 
   [1]: https://github.com/JimmyVV
