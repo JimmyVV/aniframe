@@ -7,7 +7,7 @@
     } else if (typeof exports === 'object') {
         module.exports = factory();
     } else {
-        root.returnExports = factory();
+        root.aniframe = factory();
     }
 }(this, function() {
     // define the library of RAF (requestAnimationFrame)
